@@ -25,6 +25,58 @@
     p {
       font-size: 1.2em;
     }
+
+
+    footer {
+      background-color: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #ccc;
+    }
+
+    footer a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 70vw;
+      height: 40vh;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 2px solid #888;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      z-index: 1000;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #888;
+    }
   </style>
 </head>
 <body>
@@ -47,5 +99,45 @@
      et la r&eacute;gion environnante est en cours d'&eacute;laboration. Revenez bientôt !</p><br>
     <h1><a href="https://www.cognitoforms.com/Formcontact1/Contact?entry={%22Site%22:%22Strasbourgimmobilier.com%22}">Contactez-nous</a></h1><br><br>
   </div>
+  
+  
+<footer>
+  <a onclick="openModal('legal')">Mentions l&eacute;gales</a>
+  <a onclick="openModal('contact')">Contact</a>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeModal()"></div>
+
+<div class="modal" id="modal-legal">
+  <span class="close-btn" onclick="closeModal()"><b>X</b></span>
+  <h2>Mentions l&eacute;gales</h2>
+  <p>Editeur du site :  INTERNET - 34 av la bruyere - 38100 Grenoble<br>
+  Ce site ne d&eacute;pose pas de cookies autre que essentiel au fonctionnement.<br><br>
+  <a href="https://www.cognitoforms.com/Formcontact1/Contact?entry={%22Site%22:%22Strasbourgimmobilier.com%22}">Contactez-nous</a>
+  </p>
+</div>
+
+<div class="modal" id="modal-contact">
+  <span class="close-btn" onclick="closeModal()"><b>X</b></span>
+  <h2>Contact</h2>
+  Une question nous concernant ?<br>
+  Nous restons &agrave; votre disposition !
+  <p><a href="https://www.cognitoforms.com/Formcontact1/Contact?entry={%22Site%22:%22Strasbourgimmobilier.com%22}">Contactez-nous</a></p>
+</div>
+
+<script>
+  function openModal(type) {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('modal-' + type).style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('overlay').style.display = 'none';
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.style.display = 'none';
+    });
+  }
+</script>
+
 </body>
 </html>
